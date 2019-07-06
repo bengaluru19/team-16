@@ -1,4 +1,4 @@
-import psycopg2
+# import psycopg2
 import os
 from flask_bcrypt import generate_password_hash, check_password_hash
 import mysql.connector

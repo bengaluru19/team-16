@@ -4,7 +4,6 @@ from db import *
 
 app = Flask(__name__)
 app.secret_key = ''
-csrf = CSRFProtect(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
