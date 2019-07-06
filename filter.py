@@ -9,7 +9,7 @@ Created on Sun Jul  7 00:18:38 2019
 import pandas as pd
 
 df = pd.read_csv("/home/sneha/Documents/Code_for_good/dataset/Anthill games.csv")
-
+df["A"] = df["Area"] + (df["Excess"]*df["Area"])/100
 def printknapSack(W, wt, val, n, mval): 
 	K = [[0 for w in range(W + 1)] 
 			for i in range(n + 1)] 
@@ -46,11 +46,11 @@ def printknapSack(W, wt, val, n, mval):
 val = []
 
 wt = []
-data={"Budget":100000,"Area":10000,"snake":1,"disabled":0}
+data={"Budget":150000,"Area":2000,"snake":1,"disabled":0}
 #print(len(df))
 k=0
 store=dict()
-for (a,b,c,d,e) in zip(df["Area"],df["Budget"],df["Snake"],df["Disabled"],df["Product"]):
+for (a,b,c,d,e) in zip(df["A"],df["Budget"],df["Snake"],df["Disabled"],df["Product"]):
     if c==data["snake"] and d==data["disabled"]:
         val.append(a)
         wt.append(b)
