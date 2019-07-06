@@ -63,7 +63,7 @@ def create_user(email, password):
     user_id = str(user_id)
     password = generate_password_hash(password)
     password = str(password, "utf-8")
-    executeDB(c, "update user set password=%s where email=%s", (password, email))
+    executeDB(c, "update user set password=%s, status=ongoing where email=%s", (password, email))
     disconnectDB(c)
     return True
 
@@ -84,7 +84,7 @@ def login_user(email, password):
 
 # Fetching Stuff
 # Fetch single Request by User Id
-def request_list_by_id(user_id):
+def request_by_id(user_id):
     c = connectDB()
     user_id = str(user_id)
     result = queryDB(c, "select * from user where user_id=%s", (user_id, ))
@@ -93,7 +93,7 @@ def request_list_by_id(user_id):
 
 
 # Fetch Single Request by Email
-def request_list_by_email(email):
+def request_by_email(email):
     c = connectDB()
     result = queryDB(c, "select * from user where email=%s", (email, ))
     disconnectDB(c)
@@ -108,3 +108,75 @@ def request_list():
     return result
 
 
+# Fetch Image
+def image_list_by_id(user_id):
+    c = connectDB()
+    user_id = str(user_id)
+    result = queryDB(c, "select * from image where user_id=%s", (user_id, ))
+    disconnectDB(c)
+    return result
+
+
+# Fetch Remarks
+def remarks_by_id(user_id):
+    c = connectDB()
+    user_id = str(user_id)
+    result = queryDB(c, "select * from remark where user_id=%s", (user_id, ))
+    disconnectDB(c)
+    return result
+
+
+# Fetch Elements
+def elements_by_id(user_id):
+    c = connectDB()
+    user_id = str(user_id)
+    result = queryDB(c, "select * from element where user_id=%s", (user_id, ))
+    disconnectDB(c)
+    return result
+
+
+# Fetch Has Elements
+def has_elements_by_id(user_id):
+    c = connectDB()
+    user_id = str(user_id)
+    result = queryDB(c, "select * from has_element where user_id=%s", (user_id, ))
+    disconnectDB(c)
+    return result
+
+
+# Adding Stuff
+# Add element
+def add_element(element_name):
+    c = connectDB()
+    executeDB(c, "insert into element(element_id, element_name) values(default, %s)", (element_name, ))
+    disconnectDB(c)
+    return True
+
+
+# Add image
+def add_image(image_url, u_id):
+    c = connectDB()
+    u_id = str(u_id)
+    executeDB(c, "insert into image(image_id, image_url, u_id) values(default, %s, %s)", (image_url, u_id))
+    disconnectDB(c)
+    return True
+
+
+# Add remark
+def add_remark(remarks, u_id):
+    c = connectDB()
+    u_id = str(u_id)
+    executeDB(c, "insert into remark(remarks_id, remarks, u_id) values(default, %s, %s)", (remarks, u_id))
+    disconnectDB(c)
+    return True
+
+
+# Add has_element
+def add_has_element(e_id, u_id, quantity):
+    c = connectDB()
+    e_id = str(e_id)
+    u_id = str(u_id)
+    quantity = str(quantity)
+    executeDB(c, "insert into has_element(e_id, u_id, quantity) values(%s, %s, %s)", (e_id, u_id, quantity))
+    disconnectDB(c)
+    return True
