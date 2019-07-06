@@ -4,7 +4,7 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 import mysql.connector
 
 # for mysql
-def connectDB(host='localhost', database='anthill', user='root', password='1234'):
+def connectDB(host='localhost', database='anthill', user='root', password='1010'):
     return mysql.connector.connect(host=host, database=database, user=user, password=password)
 
 
@@ -43,15 +43,15 @@ def queryDB(conn, sql):
 # Request Form
 def request_form(name, email, phone, company, company_name, no_of_playgrounds, location, funding, budget, start_time, preferences):
     c = connectDB()
-    executeDB(c, "insert into user(user_id, name, email, phone, company, company_name, no_of_playgrounds, location, funding, budget, preferences) values(default, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (name, email, phone, company, company_name, no_of_playgrounds, location, funding, budget, start_time, preferences))
+    executeDB(c, "insert into user(user_id, name, email, phone, company, company_name, no_of_playgrounds, location, funding, budget, start_time, preferences) values(default, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (name, email, phone, company, company_name, no_of_playgrounds, location, funding, budget, start_time, preferences))
     disconnectDB(c)
     return True
 
 
 # Survey Form
-def survey_form(project_name, field_type, google_location, address, no_of_students, min_age, max_age, snake_prone, public_location, vandalism_prone, soil_condition, play_elements, underground_connections, electric_posts, trees, rocks, water_logging, highway, waterbodies, disability, maintainance_required, additional_requirements, email):
+def survey_form(project_name, field_type, google_location, address, no_of_students, age, area, snake_prone, public_location, vandalism_prone, soil_condition, play_elements, underground_connections, electric_posts, trees, rocks, water_logging, highway, waterbodies, disability, maintainance_required, additional_requirements, email):
     c = connectDB()
-    executeDB(c, "update user set project_name=%s, field_type=%s, google_location=%s, address=%s, no_of_students=%s, min_age=%s, max_age=%s, snake_prone=%s, public_location=%s, vandalism_prone=%s, soil_condition=%s, play_elements=%s, underground_connections=%s, electric_posts=%s, trees=%s, rocks=%s, water_logging=%s, highway=%s, waterbodies=%s, disability=%s, maintainance_required=%s, additional_requirements=%s where email=%s", (project_name, field_type, google_location, address, no_of_students, min_age, max_age, snake_prone, public_location, vandalism_prone, soil_condition, play_elements, underground_connections, electric_posts, trees, rocks, water_logging, highway, waterbodies, disability, maintainance_required, additional_requirements, email))
+    executeDB(c, "update user set project_name=%s, field_type=%s, google_location=%s, address=%s, no_of_students=%s, age=%s, area=%s, snake_prone=%s, public_location=%s, vandalism_prone=%s, soil_condition=%s, play_elements=%s, underground_connections=%s, electric_posts=%s, trees=%s, rocks=%s, water_logging=%s, highway=%s, water_bodies=%s, disability=%s, maintainance_required=%s, additional_requirements=%s where email=%s", (project_name, field_type, google_location, address, no_of_students, age, area, snake_prone, public_location, vandalism_prone, soil_condition, play_elements, underground_connections, electric_posts, trees, rocks, water_logging, highway, waterbodies, disability, maintainance_required, additional_requirements, email))
     disconnectDB(c)
     return True
 

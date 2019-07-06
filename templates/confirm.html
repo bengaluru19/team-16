@@ -16,19 +16,12 @@
         <div class="jumbotron text-xs-center">
                 <!-- <h1 class="display-3">Thank You!</h1> -->
                 <p class="lead"><strong>Do you wish to fill the Site survey?</strong> </p>
-                <button id="no" type="button" class="btn btn-danger">No, Not right now</button>
-                <button id="yes" type="button" class="btn btn-primary">Yes, indeed!</button>
+                <button onclick="window.location.href='/'" id="no" type="button" class="btn btn-danger">No, Not right now</button>
+                <button onclick="window.location.href='/survey'" id="yes" type="button" class="btn btn-primary">Yes, indeed!</button>
                 <!-- <p class="lead">
                   <a class="btn btn-primary btn-sm" href="index.html" role="button">Continue to homepage</a>
                 </p> -->
               </div>
-              <script>
-                  document.getElementById('no').addEventListener('click',function(){
-            window.location = 'index.html';
-        });
-        document.getElementById('yes').addEventListener('click',function(){
-            window.location = 'survey.html';
-        });
-              </script>
+              
 </body>
 </html>

@@ -30,7 +30,7 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="post">
+			<form class="contact100-form validate-form" method="post">
 				<span class="contact100-form-title">
 					SITE SURVEY FORM
                 </span>
@@ -39,13 +39,13 @@
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">Individual/Organization Name</span>
-					<input class="input100" type="text" name="name" placeholder="Enter name">
+					<input class="input100" type="text" name="project_name" placeholder="Enter name">
 					<span class="focus-input100"></span>
                 </div>
                 <div class="wrap-input100 input100-select">
                         <span class="label-input100">Land type</span>
                         <div>
-                            <select class="selection-2" name="service">
+                            <select class="selection-2" name="field_type">
                                     <option disabled selected value> -- select an option -- </option>
                                 <option>Personal Land</option>
                                 <option>Organization/Firm Land</option>
@@ -60,13 +60,13 @@
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Email</span>
-					<input class="input100" type="email" name="phone" placeholder="Enter your email addess">
+					<input class="input100" type="email" name="email" placeholder="Enter your email addess">
 					<span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid location">
                         <span class="label-input100">Google maps location</span>
-                        <input class="input100" type="text" name="phone" placeholder="Enter location">
+                        <input class="input100" type="text" name="google_location" placeholder="Enter location">
                         <span class="focus-input100"></span>
                     </div>
                 
@@ -80,7 +80,7 @@
 
                 <div class="wrap-input100 validate-input">
                         <span class="label-input100">Number of children</span>
-                        <input class="input100" type="number" name="children" placeholder="Enter number of children">
+                        <input class="input100" type="text" name="no_of_students" placeholder="Enter number of children">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -99,7 +99,7 @@
 				<div class="wrap-input100 input100-select">
 					<span class="label-input100">Is the site snake prone?</span>
 					<div>
-						<select class="selection-2" name="service">
+						<select class="selection-2" name="snake_prone">
                                 <option disabled selected value> -- select an option -- </option>
 							<option>Yes</option>
 							<option>No</option>
@@ -111,7 +111,7 @@
                 <div class="wrap-input100 input100-select">
                         <span class="label-input100">Is the site open to general public?</span>
                         <div>
-                            <select class="selection-2" name="service">
+                            <select class="selection-2" name="public_location">
                                     <option disabled selected value> -- select an option -- </option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -124,7 +124,7 @@
                     <div class="wrap-input100 input100-select">
                             <span class="label-input100">Is the ground prone to vandalism?</span>
                             <div>
-                                <select class="selection-2" name="service">
+                                <select class="selection-2" name="vandalism_prone">
                                         <option disabled selected value> -- select an option -- </option>
                                     <option>Yes</option>
                                     <option>No</option>
@@ -136,7 +136,7 @@
                         <div class="wrap-input100 input100-select">
                                 <span class="label-input100">Soil condition</span>
                                 <div>
-                                    <select class="selection-2" name="service">
+                                    <select class="selection-2" name="soil_condition">
                                             <option disabled selected value> -- select an option -- </option>
                                         <option>Hard and rocky</option>
                                         <option>Soft</option>
@@ -150,7 +150,7 @@
                             <div class="wrap-input100 input100-select">
                                     <span class="label-input100">1. Play elements on site</span>
                                     <div>
-                                        <select class="selection-2" name="service">
+                                        <select class="selection-2" name="play_elements">
                                                 <option disabled selected value> -- select an option -- </option>
                                             <option>Yes</option>
                                             <option>No</option>
@@ -162,7 +162,7 @@
                                 <div class="wrap-input100 input100-select">
                                         <span class="label-input100">2. Underground wires/pipes/tanks</span>
                                         <div>
-                                            <select class="selection-2" name="service">
+                                            <select class="selection-2" name="underground_connections">
                                                     <option disabled selected value> -- select an option -- </option>
                                                 <option>Yes</option>
                                                 <option>No</option>
@@ -174,7 +174,7 @@
                                     <div class="wrap-input100 input100-select">
                                             <span class="label-input100">3. Electric Poles/ lamp posts</span>
                                             <div>
-                                                <select class="selection-2" name="service">
+                                                <select class="selection-2" name="electric_posts">
                                                         <option disabled selected value> -- select an option -- </option>
                                                     <option>Yes</option>
                                                     <option>No</option>
@@ -186,7 +186,7 @@
                                         <div class="wrap-input100 input100-select">
                                                 <span class="label-input100">4. Trees and plants</span>
                                                 <div>
-                                                    <select class="selection-2" name="service">
+                                                    <select class="selection-2" name="trees">
                                                             <option disabled selected value> -- select an option -- </option>
                                                         <option>Yes</option>
                                                         <option>No</option>
@@ -198,7 +198,7 @@
                                             <div class="wrap-input100 input100-select">
                                                     <span class="label-input100">5. Boulders or rocks</span>
                                                     <div>
-                                                        <select class="selection-2" name="service">
+                                                        <select class="selection-2" name="rocks">
                                                                 <option disabled selected value> -- select an option -- </option>
                                                             <option>Yes</option>
                                                             <option>No</option>
@@ -210,7 +210,7 @@
                                                 <div class="wrap-input100 input100-select">
                                                         <span class="label-input100">6. Water Logging</span>
                                                         <div>
-                                                            <select class="selection-2" name="service">
+                                                            <select class="selection-2" name="water_logging">
                                                                     <option disabled selected value> -- select an option -- </option>
                                                                 <option>Yes</option>
                                                                 <option>No</option>
@@ -233,7 +233,7 @@
                                         <div class="wrap-input100 input100-select">
                                                 <span class="label-input100">Any major highways or traffic roads nearby</span>
                                                 <div>
-                                                    <select class="selection-2" name="service">
+                                                    <select class="selection-2" name="highway">
                                                             <option disabled selected value> -- select an option -- </option>
                                                         <option>Yes</option>
                                                         <option>No</option>
@@ -244,7 +244,7 @@
                                             <div class="wrap-input100 input100-select">
                                                     <span class="label-input100">Water bodies nearby</span>
                                                     <div>
-                                                        <select class="selection-2" name="service">
+                                                        <select class="selection-2" name="waterbodies">
                                                                 <option disabled selected value> -- select an option -- </option>
                                                             <option>Sea/beach</option>
                                                             <option>River/Stream</option>
@@ -259,7 +259,7 @@
                                                 <div class="wrap-input100 input100-select">
                                                 <span class="label-input100">Should the playground cater to specially abled children?</span>
                                                 <div>
-                                                    <select class="selection-2" name="service">
+                                                    <select class="selection-2" name="disability">
                                                             <option disabled selected value> -- select an option -- </option>
                                                         <option>Yes</option>
                                                         <option>No</option>
@@ -270,7 +270,7 @@
                                             <div class="wrap-input100 input100-select">
                                                     <span class="label-input100">Do you need Anthill to maintain the playground?</span>
                                                     <div>
-                                                        <select class="selection-2" name="service">
+                                                        <select class="selection-2" name="maintainance_required">
                                                                 <option disabled selected value> -- select an option -- </option>
                                                             <option>Yes</option>
                                                             <option>No</option>
@@ -280,7 +280,7 @@
                                                 </div>
                                                 <div class="wrap-input100 validate-input" data-validate = "Message is required">
                                                         <span class="label-input100">Any particular activity/equipment needed?</span>
-                                                        <textarea class="input100" name="message" ></textarea>
+                                                        <textarea class="input100" name="additional_requirements" ></textarea>
                                                         <span class="focus-input100"></span>
                                                     </div>
                                         
@@ -361,7 +361,7 @@
 				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn" id="submit">
+						<button class="contact100-form-btn" id="submit" type="submit">
 							<span>
 								Submit
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -373,9 +373,10 @@
 		</div>
     </div>
     <script>
-        document.getElementById('submit').addEventListener('click',function(){
-            window.location = 'submit.html';
-        });
+        document.getElementById('submit').onsubmit = function(){
+            window.location = '/survey_done';
+        }
+        // });
     </script>
 
 

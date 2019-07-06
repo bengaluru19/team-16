@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, abort, session
+from flask import Flask, render_template, request, url_for, abort, session, redirect
 from flask_mail import Mail, Message
 from db import *
 
@@ -14,12 +14,19 @@ app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
 
-@app.route('/request', methods=['POST'])
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/request', methods=['POST', 'GET'])
 def ask_request():
     if request.method == "POST":
         name = request.form["name"] 
         to_email = request.form["email"]
-        if register_form(request.form["name"], request.form["email"], request.form["phone"], request.form["company"], request.form["company_name"], request.form["no_of_playgrounds"], request.form["location"], request.form["funding"], request.form["budget"], request.form["start_time"], request.form["preferences"]):
+        print(request.form)
+        if request_form(request.form["name"], request.form["email"], request.form["phone"], request.form["company"], request.form["company_name"], request.form["no_of_playgrounds"], request.form["location"], request.form["funding"], request.form["budget"], request.form["start_time"], request.form["preferences"]):
             msg = Message('Ant Hill Creations welcomes you!', sender = 'vinaykatare456@gmail.com', recipients = [to_email])
             link = "http://127.0.0.1:5000/survey.html"
             msg.body = "Hello "+name+" \n Ant Hill Creations welcomes you! Our motto is to aim at interactive learning environments in public spaces with a primary focus on sustainability. \n Thank you for registrating with us! \n To proceed with us, fill the survey in the survey link - " + link+ "\n Regards,\n Ant Hill Creations \n https://anthillcreations.org/"
@@ -31,19 +38,19 @@ def ask_request():
 
 @app.route('/do_survey')
 def confirm_for_survey():
-   return render_template('confiem.html')
+   return render_template('confirm.html')
 
 
-@app.route("/survey", methods=['POST'])
+@app.route("/survey", methods=['POST', 'GET'])
 def survey():
     if request.method == "POST":
         to_email = request.form["email"]
-        if survey_form(request.form["project_name"], request.form["field_type"], request.form["google_location"], request.form["address"], request.form["no_of_students"], request.form["min_age"], request.form["max_age"], request.form["snake_prone"], request.form["public_location"], request.form["vandalism_prone"], request.form["soil_condition"], request.form["play_elements"], request.form["underground_connections"], request.form["electric_posts"], request.form["trees"], request.form["rocks"], request.form["water_logging"], request.form["highway"], request.form["waterbodies"], request.form["disability"], request.form["maintainance_required"], request.form["additional_requirements"], request.form["email"]
+        if survey_form(request.form["project_name"], request.form["field_type"], request.form["google_location"], request.form["address"], request.form["no_of_students"], request.form["age"], request.form["area"], request.form["snake_prone"], request.form["public_location"], request.form["vandalism_prone"], request.form["soil_condition"], request.form["play_elements"], request.form["underground_connections"], request.form["electric_posts"], request.form["trees"], request.form["rocks"], request.form["water_logging"], request.form["highway"], request.form["waterbodies"], request.form["disability"], request.form["maintainance_required"], request.form["additional_requirements"], request.form["email"]
 ):
-            msg = Message('Survey form received and generic proposal attached.', sender = 'vinaykatare456@gmail.com', recipients = [email_id])   
+            msg = Message('Survey form received and generic proposal attached.', sender = 'vinaykatare456@gmail.com', recipients = [to_email])   
             msg.body = "Hello, we have received your survey form and accordingly we have sent a generic proposal. Please find the attached generic proposal."
-            with app.open_resource("proposal.ppt") as fp:
-                msg.attach("proposal.ppt", "proposal.ppt", fp.read())
+            # with app.open_resource("proposal.ppt") as fp:
+            #     msg.attach("proposal.ppt", "proposal.ppt", fp.read())
             mail.send(msg)
             return redirect(url_for('survey_done'))
         abort(500)
