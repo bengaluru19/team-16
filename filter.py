@@ -46,7 +46,7 @@ def printknapSack(W, wt, val, n, mval):
 val = []
 
 wt = []
-data={"Budget":150000,"Area":2000,"snake":1,"disabled":0}
+data={"Budget":150000,"Area":1000,"snake":1,"disabled":0}
 #print(len(df))
 k=0
 store=dict()
@@ -69,5 +69,44 @@ res=printknapSack(W, wt, val, n,mval)
     
 print(res)
 
+
+
+import img2pdf 
+from PIL import Image 
+import os 
+from PyPDF2 import PdfFileMerger  
+merger = PdfFileMerger()
+
+y = list(res)
+for i in y:
+    # storing image path 
+    img_path = "/home/sneha/Documents/Code_for_good/images/"+str(i)+".jpg"
+    
+    # storing pdf path 
+    pdf_path = "/home/sneha/Documents/Code_for_good/images/"+str(i)+".pdf"
+      
+    # opening image 
+    image = Image.open(img_path) 
+      
+    # converting into chunks using img2pdf 
+    pdf_bytes = img2pdf.convert(image.filename) 
+      
+    # opening or creating pdf file 
+    file = open(pdf_path, "wb") 
+      
+    # writing pdf files with chunks 
+    file.write(pdf_bytes)
+    merger.append(pdf_path)
+      
+    # closing image file 
+    image.close() 
+      
+    # closing pdf file 
+    file.close() 
+      
+    # output 
+    print("Successfully made pdf file"+str(i))
+merger.write("/home/sneha/Documents/Code_for_good/images/result.pdf")
+merger.close()
 
 
