@@ -85,7 +85,16 @@ def dashboard_admin():
 def dashboard_admin_user_info(user_id):
     if session.get('login'):
         user=request_list_by_id(user_id)
-        return render_template('projectforadmin.html', user=user, image=image)
+        return render_template('details.html', user=user)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/dashboard/admin/<user_id>/start')
+def dashboard_admin_user_info(user_id):
+    if session.get('login'):
+        # user=request_list_by_id(user_id)
+        return render_template('pic.html', image=image)
     else:
         return redirect(url_for('login'))
 
