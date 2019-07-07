@@ -74,7 +74,7 @@ def login_user(email, password):
     result = queryDB(c, "select * from user where email=%s'", (email, ))
     disconnectDB(c)
     if result:
-        if check_password_hash(result[0][2], password):
+        if check_password_hash(result[0][30], password):
             return result[0]
         else:
             return False
@@ -87,7 +87,7 @@ def login_user(email, password):
 def request_by_id(user_id):
     c = connectDB()
     user_id = str(user_id)
-    result = queryDB(c, "select * from user where user_id=%s", (user_id, ))
+    result = queryDB(c, "select * from user where user_id='"+user_id+"'")
     disconnectDB(c)
     return result
 

@@ -35,6 +35,8 @@ def ask_request():
             msg = Message('Ant Hill Creations welcomes you!', sender = 'vinaykatare456@gmail.com', recipients = [to_email])
             link = "http://127.0.0.1:5000/survey.html"
             msg.body = "Hello "+name+" \n Ant Hill Creations welcomes you! Our motto is to aim at interactive learning environments in public spaces with a primary focus on sustainability. \n Thank you for registrating with us! \n To proceed with us, fill the survey in the survey link - " + link+ "\n Regards,\n Ant Hill Creations \n https://anthillcreations.org/"
+            with app.open_resource('static/pdfs/brochure.pptx') as fp:
+                msg.attach(filename='static/pdfs/brochure.pptx', data=fp.read(), content_type="application/pdf")
             mail.send(msg)
             return redirect(url_for('confirm_for_survey'))
         abort(500)
@@ -84,17 +86,18 @@ def dashboard_admin():
 @app.route('/dashboard/admin/<user_id>')
 def dashboard_admin_user_info(user_id):
     if session.get('login'):
-        user=request_list_by_id(user_id)
+        user=request_by_id(user_id)
+        print(user)
         return render_template('details.html', user=user)
     else:
         return redirect(url_for('login'))
 
 
 @app.route('/dashboard/admin/<user_id>/start')
-def dashboard_admin_user_info(user_id):
+def dashboard_admin_user_pic(user_id):
     if session.get('login'):
         # user=request_list_by_id(user_id)
-        return render_template('pic.html', image=image)
+        return render_template('pic.html')
     else:
         return redirect(url_for('login'))
 
@@ -108,15 +111,19 @@ def dashboard_user(user_id):
         return redirect(url_for('login'))
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == "POST":
         email = request.form['email']
         password = request.form['password']
-        if email == "admin@admin.com" and check_password_hash("admin", password):
+        if email == "admin@admin.com" and "admin"== password:
+            session['login'] = True
+            session['user_id'] = 0
             return redirect(url_for('dashboard_admin'))    
         result = login_user(email, password)
         if result:
+            session['login'] = True
+            session['user_id'] = result[0]
             return redirect(url_for('dashboard_user', user_id=result[0]))    
     return render_template('login.html')
 
