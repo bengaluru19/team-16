@@ -95,7 +95,7 @@ def request_by_id(user_id):
 # Fetch Single Request by Email
 def request_by_email(email):
     c = connectDB()
-    result = queryDB(c, "select * from user where email=%s", (email, ))
+    result = queryDB(c, "select * from user where email='"+email+"'")
     disconnectDB(c)
     return result
 
