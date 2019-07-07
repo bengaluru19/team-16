@@ -67,7 +67,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="admindash.html" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
               <p>
                 Dashboard
                 <!-- <i class="right fas fa-angle-left"></i> -->
@@ -420,7 +420,7 @@
               <div class="container-fluid">
                 <div class="row mb-2">
                   <div class="col-sm-6">
-                    <h1>User Details</h1>
+                    <h1>INFORMATION</h1>
                   </div>
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -435,7 +435,7 @@
         
             <!-- Main content -->
             <section class="content">
-              <div class="row">
+              <div class="row" id="image">
                 <!-- <div class="col-12">
                   <div class="card">
                     <div class="card-header"> -->
@@ -447,33 +447,12 @@
                             <div class="card card-outline card-success">
                               <div class="card-header">
                                 <h3 class="card-title">Add Photo</h3>
-                
-                                <div class="card-tools">
-                                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
-                                  </button>
-                                </div>
-                                <!-- /.card-tools -->
-                              </div>
-                              <!-- /.card-header -->
-                              <div class="card-body">
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mymodal">
-                                        Add
-                                      </button>
-                                      <div class="modal fade" id="myModal" role="dialog">
-                                            <div class="modal-dialog">
 
-                                                    <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                              <h4 class="modal-title">Modal Header</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                              <p>Some text in the modal.</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                          </div>
+                                <input type='file' />                     <br>
+                                 <img style="display:none" id="myImg" src="#" alt="your image" height=200 width=100>
+                                
+                
+                               
                               </div>
                               <!-- /.card-body -->
                             </div>
@@ -490,9 +469,72 @@
           <!-- </div> -->
           <!-- /.col -->
         <!-- </div> -->
-        
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
+        <div class="row">
+                <div class="col-md-6">
+                  <!-- Box Comment -->
+                  <div class="card card-widget">
+                    <div class="card-header">
+                      <div class="user-block">
+                        <!-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> -->
+                        <span class="username"><a href="#">Anthill</a></span>
+                        <span class="description">Shared at - 7:30 PM Today</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <!-- <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
+                          <i class="far fa-circle"></i></button>
+                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
+                        </button>
+                      </div> -->
+                      <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <img class="img-fluid pad" src="../images/swing.jpg" alt="Photo">
+      
+                      <p>Photo swings added to the park.</p>
+                      <!-- <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
+                      <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+                      <span class="float-right text-muted">127 likes - 3 comments</span> -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer card-comments">
+                      <div class="card-comment">
+                        <!-- User image -->
+                        <!-- <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image"> -->
+      
+                        <div class="comment-text">
+                          <span class="username">
+                            Maria Gonzales
+                            <span class="text-muted float-right">8:03 PM Today</span>
+                          </span><!-- /.username -->
+                          It is a long established fact that a reader will be distracted
+                          by the readable content of a page when looking at its layout.
+                        </div>
+                        <!-- /.comment-text -->
+                      </div>
+                      <!-- /.card-comment -->
+                      <div class="card-comment">
+                        <!-- User image -->
+                        <!-- <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="User Image"> -->
+      
+                        <div class="comment-text">
+                          <span class="username">
+                            Luna Stark
+                            <span class="text-muted float-right">8:03 PM Today</span>
+                          </span><!-- /.username -->
+                          It is a long established fact that a reader will be distracted
+                          by the readable content of a page when looking at its layout.
+                        </div>
+                        <!-- /.comment-text -->
+                      </div>
+                      <!-- /.card-comment -->
+                    </div>
+                    <!-- /.card-footer -->
+                    <!--/. container-fluid -->
+      
     </section>
     
     <!-- /.content -->
@@ -526,6 +568,33 @@
 //         window.location = 'details.html'
 //     });
 // }
+window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          var img = document.querySelector('img');  // $('img')[0]
+          img.src = URL.createObjectURL(this.files[0]); // set src to file url
+          img.onload = imageIsLoaded; 
+          // optional onload event listener
+          img.style.display = 'block';
+        //   var str = '<div class="col-md-3">'
+        //                     +'<div class="card card-outline card-success">'+
+        //                       +'<div class="card-header">'
+        //                         +'<h3 class="card-title"></h3>'
+        //                         +'<input type="file" /><br>'
+        //                         +'<img style="display:none" id="myImg" src="#" alt="your image" height=200 width=100>'
+        //                         +'</div> </div></div>';
+            
+        //     var target = document.getElementById('image');
+        //     image.innerHTML = str;
+        //   img.style.display = 'block';
+        //   <input type='file' />
+        //                         <br>
+        //                         <img id="myImg" src="#" alt="your image" height=200 width=100>
+      }
+  });
+});
+
+function imageIsLoaded(e) { alert(e); }
 </script>
 <script src="../static/js/jquery.min.js"></script>
 <!-- Bootstrap -->
