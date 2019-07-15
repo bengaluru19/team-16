@@ -35,7 +35,7 @@ def survey():
        email_id = request.form["email"]
        if survey_form(request.form["project_name"], request.form["field_type"], request.form["google_location"], request.form["address"], request.form["no_of_students"], request.form["min_age"], request.form["max_age"], request.form["snake_prone"], request.form["public_location"], request.form["vandalism_prone"], request.form["soil_condition"], request.form["play_elements"], request.form["underground_connections"], request.form["electric_posts"], request.form["trees"], request.form["rocks"], request.form["water_logging"], request.form["highway"], request.form["waterbodies"], request.form["disability"], request.form["maintainance_required"], request.form["additional_requirements"], request.form["email"]
 ):
-           msg = Message('Survey form received and generic proposal attached.', sender = 'vinaykatare456@gmail.com', recipients = [email_id])   
+           msg = Message('Survey form received and generic proposal attached.', sender = 'your_email', recipients = [email_id])   
            msg.body = "Hello, we have received your survey form and accordingly we have sent a generic proposal. Please find the attached generic proposal."
            with app.open_resource("proposal.ppt") as fp:
                msg.attach("proposal.ppt", "proposal.ppt", fp.read())
