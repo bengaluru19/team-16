@@ -7,8 +7,8 @@ mail=Mail(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'vinaykatare456@gmail.com'
-app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_USERNAME'] = 'your_email'
+app.config['MAIL_PASSWORD'] = 'your_password'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -19,7 +19,7 @@ def register():
        name = request.form["name"] 
        email_id = request.form["email"]
        if register_form(request.form["name"], request.form["email"], request.form["phone"], request.form["company"], request.form["company_name"], request.form["no_of_playgrounds"], request.form["location"], request.form["funding"], request.form["budget"], request.form["start_time"], request.form["preferences"]):
-           msg = Message('Ant Hill Creations welcomes you!', sender = 'vinaykatare456@gmail.com', recipients = [email_id])
+           msg = Message('Ant Hill Creations welcomes you!', sender = 'your_email', recipients = [email_id])
            link = "http://127.0.0.1:5000/survey.html"
            msg.body = "Hello "+name+" \n Ant Hill Creations welcomes you! Our motto is to aim at interactive learning environments in public spaces with a primary focus on sustainability. \n Thank you for registrating with us! \n To proceed with us, fill the survey in the survey link - " + link+ "\n From,\n Ant Hill Creations \n https://anthillcreations.org/"
            mail.send(msg)
